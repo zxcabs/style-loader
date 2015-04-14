@@ -3,11 +3,13 @@
 	Author Tobias Koppers @sokra
 */
 var loaderUtils = require("loader-utils"),
-	path = require("path");
+	path = require("path"),
+	utils = require("./utils");
 module.exports = function() {};
 module.exports.pitch = function(remainingRequest) {
 	this.cacheable && this.cacheable();
 	var query = loaderUtils.parseQuery(this.query);
+	remainingRequest = utils.relativeRequestPath(this.context, remainingRequest);
 	return [
 		"// style-loader: Adds some css to the DOM by adding a <style> tag",
 		"",

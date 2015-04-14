@@ -2,10 +2,12 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
-var path = require("path");
+var path = require("path"),
+	utils = require("./utils");
 module.exports = function() {};
 module.exports.pitch = function(remainingRequest) {
 	this.cacheable && this.cacheable();
+	remainingRequest = utils.relativeRequestPath(this.context, remainingRequest);
 	return [
 		"var refs = 0;",
 		"var dispose;",

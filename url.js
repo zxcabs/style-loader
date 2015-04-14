@@ -2,10 +2,12 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
-var path = require("path");
+var path = require("path"),
+	utils = require("./utils");
 module.exports = function() {};
 module.exports.pitch = function(remainingRequest) {
 	this.cacheable && this.cacheable();
+	remainingRequest = utils.relativeRequestPath(this.context, remainingRequest);
 	return [
 		"// style-loader: Adds some reference to a css file to the DOM by adding a <link> tag",
 		"var update = require(" + JSON.stringify("!" + path.join(__dirname, "addStyleUrl.js")) + ")(",
